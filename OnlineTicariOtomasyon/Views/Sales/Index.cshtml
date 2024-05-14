@@ -1,0 +1,76 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes
+@model List<SalesActivity>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Newsale";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Personel Table</title>
+    <link href="/css/salesactivity/Index.css" rel="stylesheet" />
+</head>
+<body>
+    <table class="table "  >
+      <thead>
+        <tr id="maintr">
+            <th>ID</th>
+            <th>Ürün</th>
+            <th>Cari</th>
+            <th>Personel</th>
+            <th>Adet</th>
+            <th>Fiyat</th>
+            <th>Toplam</th>
+            <th>Tarih</th>     
+            <th>Güncelle</th>
+            <th>Detaylar</th>
+
+        </tr>
+      </thead>
+        @foreach (var item in Model)
+        {
+          <tbody>
+           <tr>
+                <td>@item.SalesId</td>
+                <td>
+                    @item.Product.ProductName
+                    <div class="cerceve  my-1">
+                        <img src="/css/product/img/@item.Product.Product_Img" class="urunresim my-1">
+                    </div>
+                
+                </td>
+                <td>
+                    @item.Current.CurrentName @item.Current.CurrentLastName
+                   
+                 </td>
+                <td>@item.Personel.PersonelName  @item.Personel.Personel_Last_Name
+                    <div class="cerceve ">
+                        <img src="/css/personel/img/@item.Personel.PersoneImage" class="personelresim my-1">
+                    </div>
+                </td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+                <td>@item.TotalAmount</td>
+                <td>@item.Date</td>
+
+                <td><a class="btn btn-danger" href="/Sales/EditSale/@item.SalesId">Güncelle</a></td>
+                <td><a class="btn btn-danger" href="/Sales/SalesDetail/@item.SalesId " style="background-color:lightcoral; color:white">Detaylar</a></td>
+
+
+                </tr>
+            </tbody>
+        }
+
+    </table>
+    <a href="/Sales/Newsale" class="btn btn-info">Yeni Şatış Yap</a>
+</body>
+</html>
+
+
+ 
+
+
+ 
+ 

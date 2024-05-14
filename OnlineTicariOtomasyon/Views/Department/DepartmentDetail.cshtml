@@ -1,0 +1,54 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes
+@model  List<Personel>;
+
+    <style>
+     
+
+   
+    .satır:nth-child(even) 
+    {
+        background-color: #07EDA8;
+    }
+     
+     
+
+    .satır:nth-child(2n+1) {
+        background-color: #4386DE;
+    }
+
+    .satır:hover {
+        background-color: #DB1859;
+    }
+    }
+    <
+    </style>
+
+    <h2>Departman Detay Sayfası</h2>
+<div>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Departman Adı: @ViewBag.d</li>
+</ol>
+</div>
+      
+  <table class="table table-hover table-bordered" style="table:fir">
+    <tr style="background-color:#5F9AD9;">
+        <th class="align-self-auto">Personel Adı</th>
+        <th>Personel SoyAdı</th>
+        <th>Personel Görseli</th>
+        <th>Personel Departmannı</th>
+        <th>Satışlar</th>
+        
+     <tr />
+          @foreach (var item in Model)
+        {
+        <tr class="satır">
+         <td>@item.PersonelName</td>
+        <td>@item.Personel_Last_Name</td>
+        <td>@item.PersoneImage</td>
+        <td class="col-1">@item.Departmentid</td>
+            <td><a class="btn col-12" style="background-color:navajowhite;" href="/Department/DepartmentPersonelSales/@item.PersonelId">Satışlar</a></td>
+        </tr>
+        }
+         
+    
+</table>

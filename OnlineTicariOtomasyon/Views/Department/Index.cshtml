@@ -1,0 +1,36 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes;
+@using System.Collections
+@model List<Department>
+@* @ViewBag.product; *@
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<html>
+    <body>
+         <table class="table table-primary table-striped mt-1">
+    <tr>
+        <td>ID</td>
+        <td>Departman Adı</td>
+        <td>Sil</td>
+        <td>Güncele</td>
+        <td>Detay</td>
+
+    </tr>
+    @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DepartmentId</td>
+                <td>@item.DepartmentName</td>
+                @* <td>@ViewBag.product</td> *@
+                <td><a href="/Department/DeleteDepartment/@item.DepartmentId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Department/EditDepartment/@item.DepartmentId" class="btn btn-warning">Güncele</a> </td>
+                <td><a href="/Department/DepartmentDetail/@item.DepartmentId" class="btn btn-outline-primary">Detay</a></td>
+
+            </tr>
+
+        }
+    </table>
+    <a href="/Department/AddDepartment" class="btn btn-info">Yeni Departman Ekle</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes;
+@model OnlineTicariOtomasyon.Models.Classes.SalesActivity;
+
+<link href="/css/salesactivity/newsales.css" rel="stylesheet" />
+
+@{
+    ViewData["Title"] = "Newsale";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="border-style 1px,solid,red" id="div1">
+    <h2>Yeni Satış Sayfası</h2>
+</div>
+
+ 
+ <form class="form-group" method="post">
+    @Html.LabelFor(x => x.Productid)
+    @Html.DropDownListFor(x =>x.Productid,(List<SelectListItem>)ViewBag.dgr1,new{@class="form-control"})
+    <br />
+    @Html.Label("Cari");
+    @Html.DropDownListFor(x => x.Currentid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x=>x.Personelid)
+    @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x=>x.Quantity)
+    @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x=>x.Price)
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x=>x.TotalAmount)
+    @Html.TextBoxFor(x => x.TotalAmount, new { @class = "form-control" })
+
+
+    
+    <br />
+    <button class="btn btn-primary">Kaydet</button>
+</form>  

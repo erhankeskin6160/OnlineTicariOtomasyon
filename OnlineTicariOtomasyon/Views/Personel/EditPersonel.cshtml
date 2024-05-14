@@ -1,0 +1,30 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using OnlineTicariOtomasyon.Models.Classes
+@model Personel
+
+@{
+    ViewData["Title"] = "EditPersonel";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>EditPersonel</h1>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title></head>
+    <body>
+    <form method="post"  >
+        <input type="hidden" asp-for="PersonelId" />
+        <label>Personel Ad</label>
+        <input type="text" asp-for="PersonelName" />
+        <label>Personel SoyAd</label>
+        <input type="text" asp-for="Personel_Last_Name" />
+        <label >Personel Görsel</label>
+        <input type="text" asp-for="PersoneImage" />
+        <label>Personel Görsel</label>
+        @* @Html.DropDownListFor(x => x.Departmentid, (List<SelectListItem>)ViewBag.dep, new { @class = "form-control" })
+ *@
+          <button class="btn btn-info">Güncelle</button>
+        </form>
+    </body>
+</html>

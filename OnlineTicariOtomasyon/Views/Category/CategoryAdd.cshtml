@@ -1,0 +1,11 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes
+ @model Category;
+@{
+}
+<form method="post">
+     
+    @Html.Label("Kategori Ekleyiniz")
+    @Html.TextBoxFor(x=> x.Name,new{@class="form-control"})
+
+   <button class="btn btn-info mt-1">Gönder</button> 
+</form>

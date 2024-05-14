@@ -1,0 +1,41 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes
+@model List<SalesActivity>
+
+@{
+    ViewData["Title"] = "SalesDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Şatış Detayı</h2>
+ 
+<table class="table table-secondary table-bordered" style="padding:0;">
+    <tr>
+        <th>Satış Id</th>
+        <th>Personel Name</th>
+        <th>Ürün</th>
+        <th>Cari</th>
+        <th>Fiyat</th>
+        <th>Adet</th>
+        <th>Toplam</th>
+        <th>Tarih</th>
+       
+    </tr>
+    @foreach (var item in Model)
+    {
+
+
+        <tr>
+            <td>@item.SalesId</td>
+            <td>@item.Personel.PersonelName</td>
+            <td>@item.Product.ProductName</td>
+            <td>@item.Current.CurrentName  @item.Current.CurrentLastName</td>
+            <td>@item.Price</td>
+            <td>@item.Quantity</td>
+            <td>@item.TotalAmount</td>
+            <td>@item.Date</td>
+          
+        </tr>
+    }
+   
+</table>
+<a href="" class="btn btn-default col-12" style="background-color:dodgerblue; padding=;%100px">Yazdır</a>

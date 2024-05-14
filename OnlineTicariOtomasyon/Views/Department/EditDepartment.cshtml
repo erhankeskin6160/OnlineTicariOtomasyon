@@ -1,0 +1,22 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using OnlineTicariOtomasyon.Models.Classes
+@model Department
+ 
+
+
+ 
+
+ 
+
+<form method="post"  >
+   <div class="form-group">
+        <input type="text" asp-for="DepartmentId" class="form-control" />
+   </div>
+    <div class="form-group">
+        <label>Departman Name</label>
+        <input type="type" asp-for="DepartmentName" class="form-control" />
+    </div>
+   
+    <button class="btn btn-success" type="submit">Güncelle</button>
+</form>

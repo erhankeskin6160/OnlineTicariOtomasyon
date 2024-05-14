@@ -1,0 +1,43 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes;
+@using System.Collections;
+@model List<Current>   
+ 
+ 
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title></head>
+    <body>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Carı ID</th>
+                <th>Ad</th>
+                <th>SoyAd</th>
+                <th>Şehir</th>
+                <th>Mail</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+                <th>Detaylar</th>
+
+            </tr>
+            @foreach (var item in Model)
+        {
+            
+        
+            <tr>
+                <td>@item.CurrentId</td>
+                <td>@item.CurrentName</td>
+                <td>@item.CurrentLastName</td>
+                <td>@item.CurrentCity</td>
+                <td>@item.CurrentMail</td>
+                <td><a href="/Current/DeleteCurrent/@item.CurrentId" class="btn btn-danger col-12">Sil</a> </td>
+                <td><a href="/Current/EditCurrent/@item.CurrentId" class="btn btn-warning col-12">Güncelle</a></td>
+                <td><a href="/Current/CustomerSales/@item.CurrentId" class="btn col-12 " style="background-color:lightcoral;">Satış Geçmişi</a></td>
+            </tr>
+        }
+        </table>
+    <a href="/Current/AddCurrent" class="btn btn-primary">Yeni Cari Ekle</a>
+    </body>
+</html>

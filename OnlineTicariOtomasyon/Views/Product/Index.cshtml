@@ -1,0 +1,50 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes;
+@model List<Product>;
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+ }
+ <head>
+        <link href="/css/product/Index.css" rel="stylesheet" />
+ </head>
+ <table class="table table-success table-striped m-1 table-bordered"  >
+     <tr>
+         <th>ID</th>
+        <th>Ürün</th>
+        <th>Marka</th>
+        <th>Stok</th>
+        <th>Alış Fiyatı</th>
+        <th>Satış Fiyatı</th>
+        <th>Kategori</th>
+        <th style="text-align:center">Görsel</th>
+        
+        <th>Sil</th>
+        <th>Güncelle</th>
+     </tr>
+     @foreach (var item in  Model)
+    {
+        
+     <tr>
+        <td>@item.ProductId</td>
+        <td>@item.ProductName</td>
+        <td>@item.Brand</td>
+        <td>@item.Stock</td>
+        <td>@item.PurchasePrice</td>
+        <td>@item.SalePrice</td>
+        <td>@item.Category.Name</td>
+        <td >
+                <div>
+                    <img height="150px" width="150px" src="~/css//product/img/@item.Product_Img " />
+                </div>
+                
+            
+        
+        </td>
+        
+        <td><a href="/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
+        <td><a href="/Product/EditProduct/@item.ProductId" class="btn btn-warning">Güncelle</a></td>
+       
+     </tr>
+    }
+     
+ </table>
+<a class="btn btn-primary" href="/Product/AddProduct">Yeni Ürün Ekle</a>

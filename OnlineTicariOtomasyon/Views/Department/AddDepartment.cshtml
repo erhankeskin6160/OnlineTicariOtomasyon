@@ -1,0 +1,11 @@
+﻿ @using OnlineTicariOtomasyon.Models.Classes
+ @model Department;
+@{
+}
+<form method="post">
+
+    @Html.Label("Eklenecek Yeni Departman")
+    @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control" })
+
+    <button class="btn btn-info mt-1">Gönder</button>
+</form>

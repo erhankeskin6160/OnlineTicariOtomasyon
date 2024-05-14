@@ -1,0 +1,29 @@
+﻿
+#maintr {
+    background-color:#CCD0F0
+}
+
+tr {
+    /*background-color: #62FCBF;*/
+    background-color: #FFFFFF;
+    color: #2D2D9F;
+   
+}
+    tr:hover, tr:active,#güncelle:hover{
+        background-color: #2D2D9F;
+        color: #FFFFFF;
+        
+    }
+
+img {
+    vertical-align: left;
+    border: 2.5px solid #2D2D9F;
+}
+
+    img:hover {
+        border: 2.5px solid #FFFFFF;
+    }
+
+    img:active {
+        border 2.5px solid #2D2D9F;
+    }

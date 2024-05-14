@@ -1,0 +1,44 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes
+@model SalesActivity
+
+@{
+    ViewData["Title"] = "EditSale";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>EditSale</h1>
+
+<h3>Satış İşlemi Güncelleme Sayfası</h3>
+@using(@Html.BeginForm("EditSale","Sales",FormMethod.Post))
+{
+<form method="post">
+  <input type="hidden" asp-for="SalesId" class="form-control" />
+
+    @Html.LabelFor(x => x.Productid)
+    @Html.DropDownListFor(x => x.Productid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Currentid)
+    @Html.DropDownListFor(x => x.Currentid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Personelid)
+    @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+    <br />
+    <label>Adet</label>
+    <br />
+    <input type="text" asp-for="Quantity" class="form-control">
+    <br />
+    <label> Fiyatı</label>
+    <br />
+    <input type="text" asp-for="Price" class="form-control">
+    <br />
+    <label>Toplam</label>
+    <input type="text" asp-for="TotalAmount" class="form-control" />
+    <br />
+    <label >Tarih</label>
+    <input type="date" asp-for="Date" value="" class="form-control" /> 
+    <br />
+   
+
+    <button class="btn btn-info my-1">Güncelle</button>
+</form>
+}

@@ -1,0 +1,52 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes;
+@model List<Personel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<head>
+   <link href="/css/personel/Personel.css" rel="stylesheet" />
+</head>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title>Personel Table</title></head>
+    <body>
+    <table class="table  ">
+        <tr id="maintr">
+            <th>ID</th>
+            <th>Personel Adı</th>
+            <th>Personel SoyAdı</th>
+            <th style="text-align:center">Görsel</th>
+            <th>Çalıştığı Departman</th>
+            <th>Güncelle</th>
+            <th>Satışlar</th>
+             
+        </tr>
+         @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PersonelId</td>
+                <td>@item.PersonelName</td>
+                <td>@item.Personel_Last_Name</td>
+                <td>
+                    <div>
+                        <img style="height:100px; width:auto;" src="/css/personel/img/@item.PersoneImage"   />
+                    </div>
+                     
+                </td>
+                <td>@item.Department.DepartmentName</td>
+                <td><a class="btn btn-danger" href="/Personel/EditPersonel/@item.PersonelId" id="güncelle">Güncelle</a></td>
+                <td><a class="btn btn-danger" href="/Personel/PersonelDetails/@item.PersonelId" style="background-color:lightcoral; color:white">Detaylar</a></td>
+
+
+            </tr>
+        }
+
+</table>
+      <a href="/Personel/AddPersonel" class="btn btn-info">Personel Ekle</a>
+    </body>
+</html>
