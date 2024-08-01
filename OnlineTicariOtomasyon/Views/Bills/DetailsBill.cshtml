@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+ 
+ @model List<Bill_Item>
+     <h2>Fatura Kalemleri Sayfası</h2>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Fatura Kalem Detayları</li>
+</ol>
+
+<table class="table table-hover">
+    <tr>
+        <th>Fatura Kalem ID</th>
+        <th>Miktar</th>
+        <th>Birim Fiyat</th>
+        <th>Tutar</th>
+        <th>Açıklama</th>
+
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.BillItemId</td>
+            <td>@item.Quantity</td>
+            <td>@item.UnitPrice</td>
+            <td>@item.TotalAmount</td>
+            <td>@item.Description</td>
+
+         
+        </tr>
+    }
+</table>
+
+<th><a href="/Bills/InvoiceAddItem/id" class="btn btn-primary" style="background-color:darkcyan;"><i>Yeni Kalem Ekle</i></a>
+    

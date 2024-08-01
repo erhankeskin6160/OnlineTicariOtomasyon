@@ -80,8 +80,10 @@ namespace OnlineTicariOtomasyon.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("Varchar(30)");
 
-                    b.Property<DateTime>("Hour")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Hour")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("char(5)");
 
                     b.Property<string>("Receiver")
                         .IsRequired()
@@ -92,6 +94,9 @@ namespace OnlineTicariOtomasyon.Migrations
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("Varchar(60)");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("BillId");
 
@@ -128,6 +133,62 @@ namespace OnlineTicariOtomasyon.Migrations
                     b.HasIndex("BillId");
 
                     b.ToTable("Bill_Items");
+                });
+
+            modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.Cargo", b =>
+                {
+                    b.Property<int>("CargoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CargoId"), 1L, 1);
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("Varchar(310)");
+
+                    b.Property<string>("Personel")
+                        .IsRequired()
+                        .HasColumnType("Varchar(30)");
+
+                    b.Property<string>("Receiver")
+                        .IsRequired()
+                        .HasColumnType("Varchar(20)");
+
+                    b.Property<string>("TrackingCode")
+                        .IsRequired()
+                        .HasColumnType("Varchar(10)");
+
+                    b.HasKey("CargoId");
+
+                    b.ToTable("Cargo");
+                });
+
+            modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.CargoTracking", b =>
+                {
+                    b.Property<int>("CargoTrackingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CargoTrackingId"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("Varchar(300)");
+
+                    b.Property<string>("TrackingCode")
+                        .IsRequired()
+                        .HasColumnType("Varchar(10)");
+
+                    b.HasKey("CargoTrackingId");
+
+                    b.ToTable("CargoTrackings");
                 });
 
             modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.Category", b =>
@@ -185,6 +246,9 @@ namespace OnlineTicariOtomasyon.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("Varchar(20)");
 
+                    b.Property<string>("CurrentImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CurrentLastName")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -200,8 +264,18 @@ namespace OnlineTicariOtomasyon.Migrations
                         .HasMaxLength(29)
                         .HasColumnType("Varchar(29)");
 
+                    b.Property<string>("CurrentPassword")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("Varchar(20)");
+
                     b.Property<bool>("Durum")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("Varchar(20)");
 
                     b.HasKey("CurrentId");
 
@@ -227,6 +301,43 @@ namespace OnlineTicariOtomasyon.Migrations
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.Message", b =>
+                {
+                    b.Property<int>("MessageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageID"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("Varchar(250)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("Receiver")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("Varchar(50)")
+                        .HasColumnOrder(2);
+
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("Varchar(50)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("Varchar(50)");
+
+                    b.HasKey("MessageID");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.Personel", b =>
@@ -307,6 +418,29 @@ namespace OnlineTicariOtomasyon.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.ProductDetail", b =>
+                {
+                    b.Property<int>("DetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DetailId"), 1L, 1);
+
+                    b.Property<string>("ProductInfo")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("Varchar(1000)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("Varchar(100)");
+
+                    b.HasKey("DetailId");
+
+                    b.ToTable("ProductDetails");
+                });
+
             modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.SalesActivity", b =>
                 {
                     b.Property<int>("SalesId")
@@ -318,8 +452,9 @@ namespace OnlineTicariOtomasyon.Migrations
                     b.Property<int>("Currentid")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Personelid")
                         .HasColumnType("int");
@@ -345,6 +480,32 @@ namespace OnlineTicariOtomasyon.Migrations
                     b.HasIndex("Productid");
 
                     b.ToTable("SalesActivities");
+                });
+
+            modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.ThingsToDo", b =>
+                {
+                    b.Property<int>("ThingsToDoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ThingsToDoId"), 1L, 1);
+
+                    b.Property<string>("Remainingtime")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("Varchar(100)");
+
+                    b.Property<string>("ThingsToDoName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("Varchar(100)");
+
+                    b.Property<bool>("ThingsToDoStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ThingsToDoId");
+
+                    b.ToTable("ThingsToDo");
                 });
 
             modelBuilder.Entity("OnlineTicariOtomasyon.Models.Classes.Bill_Item", b =>

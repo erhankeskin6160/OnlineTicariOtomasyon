@@ -49,7 +49,7 @@ namespace OnlineTicariOtomasyon.Controllers
         [HttpPost]
         public IActionResult Newsale(SalesActivity s)
         {
-            s.Date = DateTime.Parse(DateTime.Now.ToShortDateString());
+            s.Date = new SalesActivity().Date;
             context.SalesActivities.Add(s);
             //context.Update(s);
             context.SaveChanges();

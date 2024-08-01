@@ -1,0 +1,25 @@
+﻿@using OnlineTicariOtomasyon.Models;
+ 
+
+<div class="login-form login-form-left">
+	<div class="agile-row">
+		<h3>Yeni Cari Kayıt formu</h3>
+		<div class="login-agileits-top">
+			<form action="/Login/Partial2" method="post">
+
+				<input type="hidden" class="name" name="CurrentId" />
+				<input type="text" class="name" name="CurrentName" Placeholder="Name" required="" />
+				<input type="text" class="name" name="CurrentLastName" Placeholder="Last Name" required="" />
+				<input type="text" class="name" name="CurrentCity" Placeholder="Şehir" required="" />
+				<input type="email" class="email" name="CurrentMail" Placeholder="Email" required="" />
+
+				<input type="password" class="password" name="CurrentPassword" Placeholder="Password" required=""  />
+				<div class="login-check">
+					<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> I Accept to the <a href="#">Terms &amp; Conditions</a></label>
+				</div>
+				<input type="submit" value="Register">
+			</form>
+		</div>
+	</div>
+</div>
+

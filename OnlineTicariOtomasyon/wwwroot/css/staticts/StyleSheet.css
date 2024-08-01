@@ -1,0 +1,16 @@
+﻿body {
+}
+
+.Card-Container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    height:30px;
+    width:30px;
+}
+
+.resim{
+    width: 10px;
+    height: 10px;
+}

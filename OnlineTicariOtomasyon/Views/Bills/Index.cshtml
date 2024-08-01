@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+ 
+@using OnlineTicariOtomasyon.Models;
+@model List<Bill>
+
+ 
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Fatura ID</th>
+            <th class="col-auto">Seri No Sıra No</th>
+            
+          
+            <th>Saat</th>
+           
+            <th>Toplam</th>
+            <th>Tarih</th>
+            <th style="text-align:center;">İşlemler</th>
+            
+        </tr>
+    </thead>
+    @foreach(var item in Model)
+    {
+       <tr>
+            <td>@item.BillId</td>
+             <td>@item.BillSeriNo @item.BillNo</td>     
+            <td>@item.Hour</td>
+     <td>@item.Total₺</td>
+            <td>@item.Date.ToShortDateString()</td>
+            <td>
+                <a href="/Bills/EditBill/@item.BillId" class="btn btn-warning mb-1 mr-1 ">Güncelle</a>
+                <a href="/Bills/DetailsBill/@item.BillId" class="btn btn-info mr-1" mb-1><i class="fa fa-info-circle"></i>Detay</a>
+                
+                <a href="#" class="btn-default mr-1">Yeni Kalemler</a>
+            </td>  
+       </tr>
+    }
+</table>
+
+ <br />
+<a href="/Bills/AddBill/" class="btn btn-primary"><i class="fa fa-plus"></i>Yeni Fatura Ekle</a>
+<a href="/Bills/EditBill" class="btn btn-info">Yazdır</a>
+
+ 

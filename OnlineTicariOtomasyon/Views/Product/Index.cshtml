@@ -2,13 +2,24 @@
 @model List<Product>;
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
- }
- <head>
-        <link href="/css/product/Index.css" rel="stylesheet" />
- </head>
+}
+<head>
+    <link href="/css/product/Index.css" rel="stylesheet" />
+</head>
+
+<div>
+    @using (@Html.BeginForm("Index", "Product", FormMethod.Get))
+    {
+        <p>
+            Ürün Adı:@Html.TextBox("p")
+            <input type="submit" value="Search" />
+        </p>
+    }
+ </div>
+
  <table class="table table-success table-striped m-1 table-bordered"  >
      <tr>
-         <th>ID</th>
+          
         <th>Ürün</th>
         <th>Marka</th>
         <th>Stok</th>
@@ -19,17 +30,19 @@
         
         <th>Sil</th>
         <th>Güncelle</th>
+        <th>Satış Yap</th>
+        <th>Detay</th>
      </tr>
      @foreach (var item in  Model)
     {
         
      <tr>
-        <td>@item.ProductId</td>
+         
         <td>@item.ProductName</td>
         <td>@item.Brand</td>
         <td>@item.Stock</td>
-        <td>@item.PurchasePrice</td>
-        <td>@item.SalePrice</td>
+        <td>@item.PurchasePrice₺</td>
+            <td>@item.SalePrice₺</td>
         <td>@item.Category.Name</td>
         <td >
                 <div>
@@ -42,6 +55,8 @@
         
         <td><a href="/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
         <td><a href="/Product/EditProduct/@item.ProductId" class="btn btn-warning">Güncelle</a></td>
+        <td><a href="/ProductDetail/Index/@item.ProductId" class="btn btn-info">Detay</a></td>
+        <td><a href="/Product/NewSale/@item.ProductId" class="btn btn-info" style=  background-color:brown;">Satış Yap</a></td>
        
      </tr>
     }

@@ -1,0 +1,36 @@
+﻿@model Cargo
+
+@{
+    ViewData["Title"] = "AddCargo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Yeni Kargo</h3>
+
+<form asp-action="AddCargo" asp-controller="Cargo" method="post">
+    <div class="form-group">
+        <input type="hidden" asp-for="CargoId" />
+        <label asp-for="TrackingCode" class="control-label"></label>
+        <input asp-for="TrackingCode" class="form-control" value="@ViewBag.cargo" readonly />
+        <br />
+        
+        <label asp-for="Personel" class="control-label"></label>
+        <input type="text" asp-for="Personel" class="form-control"  required/>
+        <br />
+
+        <label asp-for="Receiver" class="control-label"></label>
+        <input type="text" asp-for="Receiver" class="form-control" required />
+        <br />
+
+
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control" required> </textarea>
+        <br />
+
+        <label asp-for="Date" class="control-label"></label>
+        <input type="date" asp-for="Date" class="form-control"  required/>
+        <br />
+    </div>
+    
+   <button class="btn btn-info">Kaydet</button>
+</form>

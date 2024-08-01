@@ -1,0 +1,83 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes
+
+@model List<SalesActivity>
+@{
+
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CurrentLayout.cshtml";
+}
+
+<br />
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Bootstrap 4 Responsive Datatable and Export to PDF, CSV</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+
+</head>
+
+<body>
+
+    <table class="table table-striped " >
+
+        <thead>
+
+            <tr>
+
+                <th>Ürün Adı</th>
+
+                <th>Fiyat</th>
+
+                <th>Tarih</th>
+
+                 
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var x in Model)
+
+            {
+
+                <tr>
+
+                    <td>@x.Product.ProductName</td>
+
+                    <td>@x.Price</td>
+
+                   
+
+                    <td>@Convert.ToDateTime(x.Date).ToShortDateString().ToString()</td>
+
+                    
+
+                </tr>
+
+            }
+
+
+
+        </tbody>
+
+    </table>
+ 
+
+</body>
+
+</html>

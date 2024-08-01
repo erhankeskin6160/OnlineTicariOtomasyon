@@ -1,7 +1,8 @@
 ﻿  
  @using OnlineTicariOtomasyon.Models.Classes
-
- @model List<Category>
+ @using PagedList;
+@using PagedList.Mvc;
+ @model IPagedList<Category>
 
 
 @{
@@ -37,8 +38,9 @@
 
 
 
-    </table>
-    <a href="/Category/CategoryAdd" class="btn btn-primary">Kategori Ekle  </a>
+    </table> 
+    
+     <a href="/Category/CategoryAdd" class="btn btn-primary">Kategori Ekle  </a>
 </body>
 </html>
 

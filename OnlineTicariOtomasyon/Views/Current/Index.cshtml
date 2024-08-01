@@ -8,7 +8,10 @@
 }
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head><title></title></head>
+    <head><title></title>
+    
+    <link href="/css/current/current.css" rel="stylesheet" />
+    </head>
     <body>
         <table class="table table-bordered table-striped">
             <tr>
@@ -17,6 +20,7 @@
                 <th>SoyAd</th>
                 <th>Şehir</th>
                 <th>Mail</th>
+                <th>Fotoğraf</th>
                 <th>Sil</th>
                 <th>Güncelle</th>
                 <th>Detaylar</th>
@@ -32,6 +36,12 @@
                 <td>@item.CurrentLastName</td>
                 <td>@item.CurrentCity</td>
                 <td>@item.CurrentMail</td>
+                <td>
+                    <div >
+                        <img style="height:100px; width:auto;" src="/css/current/img/@item.CurrentImage" class="çerçeve  " />
+                    </div>
+
+                </td>
                 <td><a href="/Current/DeleteCurrent/@item.CurrentId" class="btn btn-danger col-12">Sil</a> </td>
                 <td><a href="/Current/EditCurrent/@item.CurrentId" class="btn btn-warning col-12">Güncelle</a></td>
                 <td><a href="/Current/CustomerSales/@item.CurrentId" class="btn col-12 " style="background-color:lightcoral;">Satış Geçmişi</a></td>

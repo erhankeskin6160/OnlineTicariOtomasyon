@@ -13,15 +13,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head><title></title></head>
     <body>
-    <form method="post"  >
+    <form asp-action="EditPersonel" asp-controller="Personel" enctype="multipart/form-data" method="post">
         <input type="hidden" asp-for="PersonelId" />
         <label>Personel Ad</label>
         <input type="text" asp-for="PersonelName" />
         <label>Personel SoyAd</label>
         <input type="text" asp-for="Personel_Last_Name" />
         <label >Personel Görsel</label>
-        <input type="text" asp-for="PersoneImage" />
-        <label>Personel Görsel</label>
+        <input type="file" asp-for="PersoneImage" value="gönder" />
+     
+       @*  <label>Personel Görsel</label> *@
         @* @Html.DropDownListFor(x => x.Departmentid, (List<SelectListItem>)ViewBag.dep, new { @class = "form-control" })
  *@
           <button class="btn btn-info">Güncelle</button>

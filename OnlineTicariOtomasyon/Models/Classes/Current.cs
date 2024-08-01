@@ -28,6 +28,16 @@ namespace OnlineTicariOtomasyon.Models.Classes
         public string CurrentMail { get; set; }
 
         public bool Durum {  get; set; }    
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(20)]
+        public string CurrentPassword { get; set; }
+        [Column(TypeName = "Varchar"),StringLength(20)]
+        public string Gender { get; set; }  
+        public string? CurrentImage { get; set; }  
+	 
+       
+
         public virtual  ICollection<SalesActivity> SalesActivitys { get; set; }
 
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineTicariOtomasyon.Models.Classes;
+using PagedList;
 
 
 namespace OnlineTicariOtomasyon.Controllers
@@ -9,11 +10,16 @@ namespace OnlineTicariOtomasyon.Controllers
     {
 
         Context dbcontext = new();
-        public IActionResult Index()
+        public IActionResult Index(int sayfa=1)
         {
-            
+            int pagenum = 13; 
+            @ViewBag.PageNumber=sayfa;
+                
             //var categorylist=new List<>. ;
-            List<Category> category = dbcontext.Categories.ToList();  
+           var  category = dbcontext.Categories.ToList().ToPagedList(sayfa,pagenum);
+            ViewBag.PageSize = pagenum;
+            ViewBag.TotalPages = category.PageCount;
+
             return View(category);
         }
         [HttpGet]
@@ -25,6 +31,7 @@ namespace OnlineTicariOtomasyon.Controllers
 
         [HttpPost]
         public IActionResult CategoryAdd(Category category)
+        
         {
             dbcontext.Categories.Add(category);
 
@@ -44,21 +51,20 @@ namespace OnlineTicariOtomasyon.Controllers
         public IActionResult CategoryEdit(int id)
         {
             var categoryedit = dbcontext.Categories.Find(id);
-            return View(categoryedit);
+            
             if (categoryedit==null)
             {
                 return RedirectToAction("Index");
 
             }
-
+            return View(categoryedit);
         }
         [HttpPost]
         public IActionResult CategoryEdit(Category category) 
         {
-           var categoryedit=dbcontext.Categories.Find(category.CategoryId);
 
-            categoryedit.Name = category.Name;
-            dbcontext.Categories.Update(categoryedit);
+           var cat= dbcontext.Categories.Find(category.CategoryId);
+            cat.Name = category.Name;
             dbcontext.SaveChanges();
             return RedirectToAction("Index");
         }

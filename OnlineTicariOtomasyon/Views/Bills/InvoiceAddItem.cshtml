@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+ @model Bill_Item;
+
+<form  method="post">
+@Html.HiddenFor(x=> x.BillItemId)
+@Html.LabelFor(x=>x.Description)
+@Html.TextBoxFor(x=>x.Description, new { @class = "form-control" })
+<br />
+@Html.LabelFor(x=>x.Quantity);
+@Html.TextBoxFor(x=>x.Quantity, new { @class = "form-control" })
+<br />
+@Html.LabelFor(x=>x.UnitPrice);
+@Html.TextBoxFor(x=>x.UnitPrice, new { @class = "form-control" })
+<br />
+@Html.LabelFor(x => x.TotalAmount);
+@Html.TextBoxFor(x => x.TotalAmount, new { @class = "form-control" })
+<br />
+@Html.LabelFor(x => x.BillId);
+    @Html.TextBoxFor(x => x.BillId  , new { @class = "form-control" })
+ 
+
+   <button class="btn" style="background-color:silver;">Gönder</button>
+</form>

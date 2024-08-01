@@ -1,0 +1,57 @@
+﻿@model SalesActivity
+@{
+    ViewData["Title"] = "NewSale";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h3>Satış Sayfası</h3>
+ 
+
+<form action="NewSale" method="post" class="form-group">
+
+    <input type="hidden" asp-for="SalesId" value="" />
+
+     
+    <label asp-for="Productid"></label>
+    <input type="text" asp-for="Productid" value="@ViewBag.dgr2" class="form-control" />
+    <br />
+    
+    @Html.LabelFor(x => x.Personelid)
+    <input type="type"  asp-for="Personelid" value="" class="form-control"/>
+     
+    <br />
+    
+    <br />
+    <label asp-for="Quantity"></label>
+    <input type="number" min="0" asp-for="Quantity" class="form-control" max="@ViewBag.maxadet"  onchange="sum()" id="txt1">
+    <br />
+    <label asp-for="Price"></label>
+    <input type="text" asp-for="Price" value="@ViewBag.Price" class="form-control"  onkeyup="sum()" id="txt2"/>
+    <br />
+    <label asp-for="TotalAmount"></label>
+    <input type="text" asp-for="TotalAmount" class="form-control"   id="txt3" readonly />
+  
+    <br />
+      
+     <br />
+    <button class="btn btn-info">Satış Yap</button>
+    
+</form>
+
+      
+<script>
+
+        function sum()
+        {
+            var sayi1=document.getElementById('txt1').value;
+            var sayi2 = document.getElementById('txt2').value;
+            var result= parseInt(sayi1) * parseInt(sayi2);
+          if (!isNaN(result))
+            {
+                document.getElementById('txt3').value = result;
+            }
+
+    
+        } 
+       
+</script>

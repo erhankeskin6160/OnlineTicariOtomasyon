@@ -7,7 +7,7 @@ namespace OnlineTicariOtomasyon.Models.Classes
         [Key]
         public int SalesId { get; set; }
 
-        public DateTime Date { get; set; }
+         public string   Date{ get; set; }= DateTime.Now.ToShortDateString() ;
         public int Quantity { get; set; }  
         public decimal Price { get; set; }
         public decimal TotalAmount{ get; set; }

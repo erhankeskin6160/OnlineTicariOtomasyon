@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 using OnlineTicariOtomasyon.Models.Classes;
+using Microsoft.AspNetCore.Http;
+using NuGet.Packaging.Signing;
 namespace OnlineTicariOtomasyon.Controllers
 {
     public class PersonelController : Controller
@@ -23,10 +26,25 @@ namespace OnlineTicariOtomasyon.Controllers
         [HttpPost]
         public IActionResult EditPersonel(Personel p)
         {
-            var personel = context.Personels.Where(x => x.PersonelId == p.PersonelId).First();
+
+            var img="";
+
+            if (Request.Form.Files.Count > 0)
+            {
+                var filename = Path.GetFileNameWithoutExtension(Request.Form.Files[0].FileName);
+                var extension = Path.GetExtension(Request.Form.Files[0].FileName).ToLower();
+                string path = "wwwroot/css/personel/img/" + filename + extension;
+                Stream stream = new FileStream(path, FileMode.Create);
+                Request.Form.Files[0].CopyTo(stream);
+
+              img = p.PersoneImage = filename + extension;
+            }
+
+                var personel = context.Personels.Where(x => x.PersonelId == p.PersonelId).First();
             personel.PersonelName = p.PersonelName;
             personel.Personel_Last_Name = p.Personel_Last_Name;
-            personel.PersoneImage = p.PersoneImage;
+            personel.PersoneImage = img;
+           
             //personel.Department.DepartmentId=p.Department.DepartmentId;
             context.SaveChanges();
 
@@ -35,6 +53,8 @@ namespace OnlineTicariOtomasyon.Controllers
 
 
             //ViewBag.dep = selectListItems;
+
+
             return RedirectToAction("Index");
             
         }
@@ -44,13 +64,23 @@ namespace OnlineTicariOtomasyon.Controllers
             List<SelectListItem> selectListItems = (from x in context.Departments.ToList()
                                                 select new SelectListItem { Text = x.DepartmentName, Value = x.DepartmentId.ToString() }).ToList();
             ViewBag.SelectListItems = selectListItems;
+
             return View();
         }
         [HttpPost]
         public IActionResult AddPersonel(Personel p) 
         {
-            context.Personels.Add(p);
-                context.SaveChanges();  
+            if (Request.Form.Files.Count>0)
+            {
+                var filename = Path.GetFileNameWithoutExtension(Request.Form.Files[0].FileName);
+                var extension = Path.GetExtension(Request.Form.Files[0].FileName).ToLower();
+                string path="wwwroot/css/personel/img/"+filename+extension;
+                Stream stream=new FileStream(path,FileMode.Create);
+                Request.Form.Files[0].CopyTo(stream);
+                p.PersoneImage = filename+extension;
+            }
+            context.Add(p);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -64,6 +94,12 @@ namespace OnlineTicariOtomasyon.Controllers
             return View(prs);
         }
 
+        public IActionResult PersonelList() 
+        {
+            var personellist=context.Personels.ToList();
+            
 
+            return View(personellist);
+        }
     }
 }

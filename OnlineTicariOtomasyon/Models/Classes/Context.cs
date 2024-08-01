@@ -32,9 +32,13 @@
         public DbSet<Product> Products { get; set; }
         public DbSet<SalesActivity> SalesActivities { get; set; }
       
-         
+       public DbSet<ProductDetail> ProductDetails { get; set; }  
         
+        public DbSet<ThingsToDo> ThingsToDo { get; set; }
 
+        public DbSet<Cargo> Cargo{ get; set; }
+        public DbSet<CargoTracking> CargoTrackings { get; set; }
+        public DbSet<OnlineTicariOtomasyon.Models.Classes.Message> Messages{get;set;}
     }
      
 }

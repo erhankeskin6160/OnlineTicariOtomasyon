@@ -1,0 +1,19 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes;
+@model List<Current > 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+  
+        @foreach (var item in Model)
+        {
+            @Html.HiddenFor(m => item.CurrentId)
+    @Html.TextBox(item.CurrentId.ToString(), new { @class = "id", @name = "CurrentId", @placeholder = "Id", @required = "" })
+
+    @Html.TextBoxFor(m => item.CurrentName, new { @class = "name", @name = "CurrentName", @placeholder = "Name", @required = "" })
+    @Html.TextBoxFor(m => item.CurrentLastName, new { @class = "name", @name = "CurrentLastName", @placeholder = "Last Name", @required = "" })
+    @Html.TextBoxFor(m => item.CurrentCity, new { @class = "name", @name = "CurrentCity", @placeholder = "Şehir", @required = "" })
+    @Html.TextBoxFor(m => item.CurrentMail, new { @class = "email", @name = "CurrentMail", @placeholder = "Email", @required = "" })
+    @Html.TextBoxFor(m => item.CurrentPassword, new { @class = "password", @name = "CurrentPassword", @placeholder = "Password", @required = "" })
+    }
+  
+</html>

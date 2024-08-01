@@ -7,7 +7,7 @@
 
 <h1>Yeni Cari Sayfası</h1><br />
 
-<form method="post">
+<form action="AddCurrent" method="post" enctype="multipart/form-data">
     @Html.LabelFor(x=>x.CurrentName);
     @Html.TextBoxFor(x=>x.CurrentName,new{@class="form-control"})
     <br />
@@ -21,6 +21,12 @@
     <br />
     @Html.LabelFor(x => x.CurrentMail);
     @Html.TextBoxFor(x => x.CurrentMail, new { @class = "form-control" })
-  
+
+    @Html.LabelFor(x=>x.CurrentPassword)
+    @Html.TextBoxFor(x=>x.CurrentPassword,new{@class="form-control"})
+    <br />
+   
+    @Html.DropDownListFor(x=>x.Gender,(IEnumerable<SelectListItem>)ViewBag.dgr1,"Durum Seçiniz",new{@class="form-control"})
+    <input type="file" asp-for="CurrentImage"class="form-control"   /><br />
     <button class="btn btn-info">Kaydet</button>
 </form>

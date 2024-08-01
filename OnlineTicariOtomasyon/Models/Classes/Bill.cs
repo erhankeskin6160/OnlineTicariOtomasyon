@@ -24,8 +24,10 @@ namespace OnlineTicariOtomasyon.Models.Classes
         [Column(TypeName = "Varchar")]
         [StringLength(60)]
         public string TaxAdministration{ get; set; }
-        
-        public DateTime Hour {  get; set; }
+
+        [Column(TypeName = "char")]
+        [StringLength(5)]
+        public string Hour {  get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
@@ -35,6 +37,8 @@ namespace OnlineTicariOtomasyon.Models.Classes
         [StringLength(30)]
         public string Receiver { get; set; }
 
+
+        public decimal Total { get; set; }
         public  virtual ICollection<Bill_Item> Bill_İtems { get; set; }    
 
 

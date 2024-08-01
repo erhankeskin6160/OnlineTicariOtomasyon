@@ -10,7 +10,7 @@
 
 <h1>AddPersonel</h1>
 
-<form asp-action="AddPersonel" method="post">
+<form asp-action="AddPersonel" asp-controller="Personel" enctype="multipart/form-data" method="post">
     <div>
         <input asp-for="PersonelId" hidden />
     </div>
@@ -25,7 +25,8 @@
     </div>
     <div class="form-group">
         <label>Personel Görsel</label>
-        <input asp-for="PersoneImage" class="form-control" />
+       @*  <input asp-for="PersoneImage" class="form-control" /> *@
+      <input type="file" asp-for="PersoneImage"  value="gönder">
          
     </div>
     

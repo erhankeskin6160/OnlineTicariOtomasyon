@@ -1,19 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NuGet.Protocol;
 using OnlineTicariOtomasyon.Models.Classes;
 
 namespace OnlineTicariOtomasyon.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         Context dbcontext= new Context();
         
-        public IActionResult Index()
+        public IActionResult Index(string p)
         {
             //var urunler = dbcontext.Products.Where(x=>x.Status==true).ToList();
-           var urunler = dbcontext.Products.ToList();   
-            return View(urunler);
+            var urunler = from c in dbcontext.Products select c;
+            if (!string.IsNullOrEmpty(p) )
+            {
+                urunler = urunler.Where(x => x.ProductName.Contains(p));
+            }
+
+            return View(urunler.ToList());
 
             ViewBag.product = new List<Product>().ToList();
         }
@@ -83,6 +90,45 @@ namespace OnlineTicariOtomasyon.Controllers
           
             dbcontext.SaveChanges();
           return  RedirectToAction("Index");
+        }
+        public IActionResult ProductList() 
+        {
+            var product = dbcontext.Products.ToList();
+            return View(product);
+        }
+
+        [HttpGet]
+        public IActionResult NewSale(int id) 
+        {
+
+
+            List<SelectListItem> selectListItems = (from x in dbcontext.Personels.ToList()
+                                                     select new SelectListItem
+                                                     {
+                                                         Text = x.PersonelName + " " + x.Personel_Last_Name,
+                                                         Value = x.PersonelId.ToString()
+                                                     }
+
+
+                                                    ).ToList();
+
+            var product=dbcontext.Products.Find(id);
+            ViewBag.dgr2 = product.ProductId;
+            ViewBag.Price=product.SalePrice;
+            ViewBag.personel = selectListItems;
+            var maxadet=dbcontext.Products.Where(x=>x.ProductId==id).Max(y=>y.Stock);   
+            ViewBag.maxadet = maxadet;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult NewSale(SalesActivity p) 
+        {
+             return View();
+            p.Date =DateTime.Now.ToShortDateString();
+            ViewBag.date = p.Date;
+            dbcontext.SalesActivities.Add(p);
+            dbcontext.SaveChanges();
+            
         }
     }
 }

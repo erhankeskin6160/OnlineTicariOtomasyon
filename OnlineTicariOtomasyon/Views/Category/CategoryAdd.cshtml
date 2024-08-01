@@ -1,11 +1,28 @@
 ﻿@using OnlineTicariOtomasyon.Models.Classes
  @model Category;
-@{
-}
-<form method="post">
+ <head>
      
-    @Html.Label("Kategori Ekleyiniz")
-    @Html.TextBoxFor(x=> x.Name,new{@class="form-control"})
+ <script src="/thumber/js/jquery-3.3.1.min.js"></script>
+ <script src="/fontawesome-free-6.5.2-web/js/categoryedit.js"></script>
+ 
+</head>
+ <body  >
+   <form asp-action="CategoryAdd" asp-controller="Category" method="post">
+        @Html.HiddenFor(x => x.CategoryId)
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+       
+        <button class="btn btn-primary mt-2" id="btn1">Ekle</button>
+        <button class="btn btn-primary mt-2" id="btn2">Ekle</button>
 
-   <button class="btn btn-info mt-1">Gönder</button> 
-</form>
+
+        <script>
+            $('#btn1').click(function () {
+                alert("Başarılı Şekilde Eklendi");
+            });
+        </script>
+
+            
+    </form>
+
+</body>

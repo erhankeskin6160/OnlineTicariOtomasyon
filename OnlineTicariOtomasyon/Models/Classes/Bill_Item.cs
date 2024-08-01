@@ -18,6 +18,7 @@ namespace OnlineTicariOtomasyon.Models.Classes
 
         public decimal TotalAmount {  get; set; }   
        public  int BillId { get; set; }    
+       
         public virtual Bill  Bills { get; set; } 
 
 

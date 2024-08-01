@@ -1,0 +1,40 @@
+﻿@using OnlineTicariOtomasyon.Models.Classes;
+ @model Bill;
+
+<form  method="post">
+
+     @Html.LabelFor(x => x.BillSeriNo)
+     @Html.TextBoxFor(x => x.BillSeriNo, new { @class = "form-control" })
+     <br />
+
+
+    @Html.LabelFor(x => x.BillSequenceNo)
+    @Html.TextBoxFor(x => x.BillSequenceNo, new { @class = "form-control" })
+    <br />
+
+
+    @Html.LabelFor(x => x.Date)
+    @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.TaxAdministration)
+    @Html.TextBoxFor(x => x.TaxAdministration, new { @class = "form-control" })
+    <br />
+
+
+    @Html.LabelFor(x => x.Hour)
+    @Html.TextBoxFor(x => x.Hour, new { @class = "form-control" })
+    <br />
+
+
+    @Html.LabelFor(x => x.Receiver)
+    @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+    <br />
+
+
+    @Html.LabelFor(x => x.DeliveryPerson)
+    @Html.TextBoxFor(x => x.DeliveryPerson, new { @class = "form-control" })
+     
+    <button class="btn btn-info">Gönder</button>
+
+
+</form> 

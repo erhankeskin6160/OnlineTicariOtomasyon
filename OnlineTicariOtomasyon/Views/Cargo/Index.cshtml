@@ -1,0 +1,40 @@
+﻿@model List<Cargo>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Kargolar</h1>
+
+@using (Html.BeginForm("Index", "Cargo", FormMethod.Get))
+{
+   <p>
+        Kargo Takip No:@Html.TextBox("searchtrckcode");
+       <input type="submit" value="Ara" />
+   </p>    
+}
+
+<table class="table table-borderland">
+    <tr>
+        <th>Personel</th>
+        <th>Alıcı</th>
+        <th>Tarih</th>
+        <th>Takip Kodu</th>
+        <th>Detaylar</th>
+       
+    </tr>
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>@item.Personel</td>
+            <td>@item.Receiver</td>
+            <td>@item.Date</td>
+            <td>@item.TrackingCode</td>
+            <td><a href="/Cargo/CargoTracking/@item.TrackingCode" class="btn btn-info">Detay</a></td>
+        </tr>
+       
+    }
+</table>
+
+<button  class="btn btn-info"><a href="/Cargo/AddCargo" style="text-decoration:none;color:white;" >Kargo Ekle</a></button>
