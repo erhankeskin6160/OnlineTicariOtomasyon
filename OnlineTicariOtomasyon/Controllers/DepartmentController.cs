@@ -1,18 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineTicariOtomasyon.Models.Classes;
-using System.Runtime.Intrinsics.X86;
 
 namespace OnlineTicariOtomasyon.Controllers
 {
+    [Authorize(Roles ="User")]
+
     public class DepartmentController: Controller
     {
+       
+        
         Context dbcontext = new Context();
         public IActionResult Index()
         {
             var departmen = dbcontext.Departments.Where(x=>x.Durum==true).ToList<Department>();
             return View(departmen);
         }
+       
         [HttpGet]
         public IActionResult AddDepartment() 
         

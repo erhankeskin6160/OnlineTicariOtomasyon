@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineTicariOtomasyon.Models.Classes;
-using PagedList;
-
-
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList;
+using X.PagedList.Extensions;
+using X.Web.PagedList;
 namespace OnlineTicariOtomasyon.Controllers
 {
     
-    public class CategoryController : Controller
+    public class CategoryController :Controller
     {
 
         Context dbcontext = new();
@@ -14,22 +18,22 @@ namespace OnlineTicariOtomasyon.Controllers
         {
             int pagenum = 13; 
             @ViewBag.PageNumber=sayfa;
-                
-            //var categorylist=new List<>. ;
-           var  category = dbcontext.Categories.ToList().ToPagedList(sayfa,pagenum);
-            ViewBag.PageSize = pagenum;
-            ViewBag.TotalPages = category.PageCount;
 
-            return View(category);
+            //var categorylist=new List<>. ;
+            var category = dbcontext.Categories.ToPagedList(sayfa, pagenum);
+            //ViewBag.PageSize = pagenum;
+            //ViewBag.TotalPages = category.PageCount;
+
+            return (IActionResult)View(category);
         }
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public IActionResult CategoryAdd()
         {
-            return View();
+            return  View();
         }
      
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public IActionResult CategoryAdd(Category category)
         
         {
@@ -40,21 +44,21 @@ namespace OnlineTicariOtomasyon.Controllers
             return RedirectToAction("Index");
         }
        
-       public  ActionResult CategoryDelete(int id) 
+       public  IActionResult CategoryDelete(int id) 
         {
           var categorydelete= dbcontext.Categories.Where(x => x.CategoryId == id).FirstOrDefault();
             dbcontext.Categories.Remove(categorydelete);
             dbcontext.SaveChanges();
             return RedirectToAction("Index");
         }
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public IActionResult CategoryEdit(int id)
         {
             var categoryedit = dbcontext.Categories.Find(id);
             
             if (categoryedit==null)
             {
-                return RedirectToAction("Index");
+                return  RedirectToAction("Index");
 
             }
             return View(categoryedit);
@@ -67,6 +71,9 @@ namespace OnlineTicariOtomasyon.Controllers
             cat.Name = category.Name;
             dbcontext.SaveChanges();
             return RedirectToAction("Index");
+     
         }
+
+        
     }
 }

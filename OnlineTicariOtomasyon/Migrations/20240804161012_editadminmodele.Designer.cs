@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineTicariOtomasyon.Models.Classes;
 
@@ -11,9 +12,10 @@ using OnlineTicariOtomasyon.Models.Classes;
 namespace OnlineTicariOtomasyon.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240804161012_editadminmodele")]
+    partial class editadminmodele
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +34,8 @@ namespace OnlineTicariOtomasyon.Migrations
 
                     b.Property<string>("Authority")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("Varchar(20)");
+                        .HasMaxLength(1)
+                        .HasColumnType("Varchar(1)");
 
                     b.Property<string>("Password")
                         .IsRequired()

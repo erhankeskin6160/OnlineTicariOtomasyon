@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Differencing;
 using OnlineTicariOtomasyon.Models.Classes;
 
 namespace OnlineTicariOtomasyon.Controllers
@@ -134,7 +135,31 @@ namespace OnlineTicariOtomasyon.Controllers
             var currentid = context.Currents.Find(id);
             return PartialView("Profile", currentid);
         }
+		[HttpGet]
+		public PartialViewResult EditProfile()
+        {
+            var mail = HttpContext.Session.GetString("CurrentMail");
+            var id = context.Currents.Where(x => x.CurrentMail == mail).Select(x => x.CurrentId).FirstOrDefault();
+            var currentid = context.Currents.Find(id);
+            return PartialView(currentid);
+        }
 
+		[HttpPost]
+		public RedirectToActionResult EditProfile(Current current) 
+		{
+			var mail = HttpContext.Session.GetString("CurrentMail");
+			var id = context.Currents.Where(x => x.CurrentMail == mail).Select(x => x.CurrentId).FirstOrDefault();
+			var currentid = context.Currents.Find(id);
+			currentid.CurrentName = current.CurrentName;
+			currentid.CurrentLastName = current.CurrentLastName;
+			currentid.CurrentMail = current.CurrentMail;
+			currentid.CurrentCity = current.CurrentCity;
+			currentid.CurrentPassword = current.CurrentPassword;
+			context.SaveChanges();
+			return RedirectToAction("Index");
+
+            
+        }
     }
 }
 

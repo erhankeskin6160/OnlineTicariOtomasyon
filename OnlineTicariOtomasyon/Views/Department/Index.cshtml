@@ -1,4 +1,5 @@
-﻿@using OnlineTicariOtomasyon.Models.Classes;
+﻿@using Microsoft.AspNetCore.Authorization
+@using OnlineTicariOtomasyon.Models.Classes;
 @using System.Collections
 @model List<Department>
 @* @ViewBag.product; *@
@@ -6,6 +7,9 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+
+@attribute [Authorize(Policy = "Admin")]
 <html>
     <body>
          <table class="table table-primary table-striped mt-1">

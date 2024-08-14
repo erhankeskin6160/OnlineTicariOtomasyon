@@ -1,6 +1,8 @@
 ﻿@using OnlineTicariOtomasyon.Models.Classes;
 @using System.Collections;
-@model List<Current>   
+@using X.PagedList;
+@using X.Web.PagedList;
+@model IPagedList<Current>   
  
  
 @{
@@ -13,7 +15,7 @@
     <link href="/css/current/current.css" rel="stylesheet" />
     </head>
     <body>
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered">
             <tr>
                 <th>Carı ID</th>
                 <th>Ad</th>
@@ -36,9 +38,9 @@
                 <td>@item.CurrentLastName</td>
                 <td>@item.CurrentCity</td>
                 <td>@item.CurrentMail</td>
-                <td>
+                <td width="120px">
                     <div >
-                        <img style="height:100px; width:auto;" src="/css/current/img/@item.CurrentImage" class="çerçeve  " />
+                        <img style="height:100px; width:max-content;" src="/css/current/img/@item.CurrentImage" class="çerçeve  " />
                     </div>
 
                 </td>
@@ -49,5 +51,16 @@
         }
         </table>
     <a href="/Current/AddCurrent" class="btn btn-primary">Yeni Cari Ekle</a>
+    <br />
+    @Html.PagedListPager((IPagedList<Current>)Model,sayfa => Url.Action("Index", new { sayfa }), new PagedListRenderOptions  
+    {
+        LiElementClasses = new List<string> { "page-link" },
+        LinkToPreviousPageFormat = "Önceki",
+        LinkToNextPageFormat = "Sonraki",
+        UlElementClasses = new List<string> { "pagination" },
+        PageClasses = new List<string> { "page-item" },
+        ActiveLiElementClass = "ye",
+        
+    })
     </body>
 </html>

@@ -19,3 +19,10 @@ img{
     width:60px;
     height:60px;
 }
+table th{
+    text-align:center;
+    align-content:center;
+}
+table tr:hover{
+        background-color: #f1f1f1;
+}

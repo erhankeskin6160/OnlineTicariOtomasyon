@@ -16,8 +16,8 @@ namespace OnlineTicariOtomasyon.Models.Classes
         [StringLength(10)]
         public string Password {  get; set; }
 
-        [Column(TypeName = "Char")]
-        [StringLength(1)]
+        [Column(TypeName = "Varchar")]
+        [StringLength(20)]
         public string Authority { get; set; }
 
 

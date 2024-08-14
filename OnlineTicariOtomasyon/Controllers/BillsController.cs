@@ -74,6 +74,13 @@ namespace OnlineTicariOtomasyon.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Dynamic() 
+        {
+            Class5 deger= new Class5();    
+            deger.Value1= dbcontext.Bills.ToList();
+            deger.Value2= dbcontext.Bill_Items.ToList();
+            return View(deger); 
+        }
 
     }
 }

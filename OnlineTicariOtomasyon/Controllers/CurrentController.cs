@@ -1,16 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineTicariOtomasyon.Models.Classes;
-
+using X.PagedList;
+using X.PagedList.Extensions;
+using X.Web.PagedList;
 
 namespace OnlineTicariOtomasyon.Controllers
 {
     public class CurrentController : Controller
     {
         Context dbcontext= new Context();   
-        public IActionResult Index()
+        public IActionResult Index(int sayfa=1)
         {
-          var current= dbcontext.Currents.Where(x=>x.Durum==true).ToList();
+            
+          var current= dbcontext.Currents.Where(x=>x.Durum==true).ToPagedList(sayfa,10);
             return View(current);
         }
         [HttpGet]

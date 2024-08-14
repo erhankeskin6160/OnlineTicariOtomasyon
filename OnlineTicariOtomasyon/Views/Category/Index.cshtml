@@ -1,9 +1,7 @@
-﻿  
- @using OnlineTicariOtomasyon.Models.Classes
- @using PagedList;
-@using PagedList.Mvc;
- @model IPagedList<Category>
-
+﻿@using OnlineTicariOtomasyon.Models.Classes
+ 
+@using X.PagedList
+@using X.Web.PagedList
 
 @{
     ViewData["Title"] = "Index";
@@ -34,13 +32,34 @@
                 <td><a href="/Category/CategoryEdit/@item.CategoryId" class="btn btn-warning">Düzenle</a></td>
                
             </tr>
+          
         }
 
 
 
-    </table> 
-    
-     <a href="/Category/CategoryAdd" class="btn btn-primary">Kategori Ekle  </a>
+    </table>
+     
+    <div  style="align-content:center;">
+    @Html.PagedListPager((IPagedList<Category>)Model,sayfa=>Url.Action("Index",new{sayfa}),new PagedListRenderOptions
+      {
+        LiElementClasses=new List<string>
+        {
+            "page-link"
+        },
+      }
+       )
+       </div>
+  
+
+ 
 </body>
 </html>
+
+
+
+
+
+
+
+
 

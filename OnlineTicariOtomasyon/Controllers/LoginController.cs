@@ -6,10 +6,11 @@ using OnlineTicariOtomasyon.Models.Classes;
 using System.Net;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineTicariOtomasyon.Controllers
 {
-
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         Context context = new Context();
@@ -63,6 +64,7 @@ namespace OnlineTicariOtomasyon.Controllers
             };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties();
+            var adminrole=context.Admins.FirstOrDefault(x=>x.Username==admin.Username);
             if (info!=null)
             {
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
@@ -73,6 +75,11 @@ namespace OnlineTicariOtomasyon.Controllers
                 return RedirectToAction("Index", "Login"); 
             }
           
+        }
+        public IActionResult AdminLogout() 
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Login");
         }
 
         

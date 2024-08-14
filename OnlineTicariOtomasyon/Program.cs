@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineTicariOtomasyon.Models.Classes;
+using System.Web.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +18,14 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 }
 );
 
+builder.Services.AddControllersWithViews(options=>
+{
+    options.Filters.Add(new Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter());
+});
  builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("Admin", policy => policy.RequireRole("kurucu"));
     options.AddPolicy("User", policy => policy.RequireRole("User"));
 });
 
@@ -31,6 +37,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+ 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
@@ -44,9 +51,12 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error/PageEror");
+    
     app.UseHsts();
 }
+ 
+ 
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -56,6 +66,7 @@ app.UseSession();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
 
 
 app.MapControllerRoute(
